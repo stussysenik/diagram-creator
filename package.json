@@ -1,20 +1,31 @@
 {
   "name": "diagram-creator",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:tunnel": "bun run dev & cloudflared tunnel --url http://localhost:5173",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "cy:open": "cypress open",
-    "cy:run": "cypress run",
-    "test:e2e": "start-server-and-test dev http://localhost:5173 cy:run"
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@ark-ui/react": "^5.34.1",
+    "@chakra-ui/react": "^3.34.0",
+    "@emotion/react": "^11.14.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "zustand": "^5.0.12"
   },
   "devDependencies": {
-    "cypress": "^15.11.0",
-    "start-server-and-test": "^2.1.5",
-    "typescript": "~5.9.3",
-    "vite": "^7.3.1"
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.0",
+    "vite-plugin-pwa": "^1.2.0",
+    "vitest": "^4.1.0"
   }
 }
