@@ -1,46 +1,70 @@
+/* ── Diagram Configuration Types ──
+   Core data model for the diagram creator.
+   BackgroundConfig extends the original with gradient, pattern, and transparent modes. */
+
 export interface StepConfig {
-  label: string;
+  label: string
+}
+
+export type BackgroundType = 'solid' | 'gradient' | 'pattern' | 'transparent'
+export type PatternVariant = 'dots' | 'lines' | 'cross-hatch'
+
+export interface BackgroundConfig {
+  type: BackgroundType
+  color: string
+  gradientFrom: string
+  gradientTo: string
+  gradientAngle: number
+  patternVariant: PatternVariant
+  patternColor: string
+  patternSpacing: number
+  patternBase: string
 }
 
 export interface DiagramConfig {
-  steps: StepConfig[];
+  steps: StepConfig[]
 
-  // Layout
-  layoutDirection: 'vertical' | 'horizontal';
-  padding: number;
+  layoutDirection: 'vertical' | 'horizontal'
+  padding: number
 
-  // Canvas
-  canvasWidth: number;
-  canvasHeight: number;
-  backgroundColor: string;
+  canvasWidth: number
+  canvasHeight: number
+  background: BackgroundConfig
 
-  // Boxes
-  boxWidth: number;
-  boxHeight: number;
-  boxSpacing: number;
-  boxCornerRadius: number;
+  boxWidth: number
+  boxHeight: number
+  boxSpacing: number
+  boxCornerRadius: number
 
-  // Borders
-  borderThickness: number;
-  borderGap: number;
-  borderColor: string;
+  borderThickness: number
+  borderGap: number
+  borderColor: string
 
-  // Typography
-  fontSize: number;
-  fontFamily: string;
-  fontWeight: number;
-  fontColor: string;
-  uppercase: boolean;
+  fontSize: number
+  fontFamily: string
+  fontWeight: number
+  fontColor: string
+  uppercase: boolean
 
-  // Arrows
-  arrowStrokeWidth: number;
-  arrowHeadSize: number;
-  arrowColor: string;
+  arrowStrokeWidth: number
+  arrowHeadSize: number
+  arrowColor: string
 
-  // Feedback loop
-  feedbackLoop: boolean;
-  feedbackCornerRadius: number;
-  feedbackLabel: string;
+  feedbackLoop: boolean
+  feedbackCornerRadius: number
+  feedbackLabel: string
+}
+
+export const DEFAULT_BACKGROUND: BackgroundConfig = {
+  type: 'solid',
+  color: '#f8f7f4',
+  gradientFrom: '#f8f7f4',
+  gradientTo: '#e0ddd4',
+  gradientAngle: 180,
+  patternVariant: 'dots',
+  patternColor: '#d0d0d0',
+  patternSpacing: 20,
+  patternBase: '#f8f7f4',
 }
 
 export const DEFAULT_CONFIG: DiagramConfig = {
@@ -55,7 +79,7 @@ export const DEFAULT_CONFIG: DiagramConfig = {
 
   canvasWidth: 600,
   canvasHeight: 760,
-  backgroundColor: '#f8f7f4',
+  background: { ...DEFAULT_BACKGROUND },
 
   boxWidth: 360,
   boxHeight: 120,
@@ -67,7 +91,7 @@ export const DEFAULT_CONFIG: DiagramConfig = {
   borderColor: '#1a1a1a',
 
   fontSize: 28,
-  fontFamily: 'monospace',
+  fontFamily: 'Rubik',
   fontWeight: 700,
   fontColor: '#1a1a1a',
   uppercase: true,
@@ -79,11 +103,11 @@ export const DEFAULT_CONFIG: DiagramConfig = {
   feedbackLoop: true,
   feedbackCornerRadius: 0,
   feedbackLabel: '',
-};
+}
 
 export interface PresetConfig {
-  name: string;
-  config: Partial<DiagramConfig>;
+  name: string
+  config: Partial<DiagramConfig>
 }
 
 export const PRESETS: PresetConfig[] = [
@@ -94,7 +118,7 @@ export const PRESETS: PresetConfig[] = [
       padding: 40,
       canvasWidth: 600,
       canvasHeight: 760,
-      backgroundColor: '#f8f7f4',
+      background: { ...DEFAULT_BACKGROUND },
       boxWidth: 360,
       boxHeight: 120,
       boxSpacing: 80,
@@ -103,7 +127,7 @@ export const PRESETS: PresetConfig[] = [
       borderGap: 0,
       borderColor: '#1a1a1a',
       fontSize: 28,
-      fontFamily: 'monospace',
+      fontFamily: 'Rubik',
       fontWeight: 700,
       fontColor: '#1a1a1a',
       uppercase: true,
@@ -122,7 +146,7 @@ export const PRESETS: PresetConfig[] = [
       padding: 40,
       canvasWidth: 800,
       canvasHeight: 600,
-      backgroundColor: '#ffffff',
+      background: { type: 'solid', color: '#ffffff', gradientFrom: '#ffffff', gradientTo: '#e0e0e0', gradientAngle: 180, patternVariant: 'dots', patternColor: '#d0d0d0', patternSpacing: 20, patternBase: '#ffffff' },
       boxWidth: 180,
       boxHeight: 64,
       boxSpacing: 80,
@@ -131,7 +155,7 @@ export const PRESETS: PresetConfig[] = [
       borderGap: 4,
       borderColor: '#1a1a1a',
       fontSize: 18,
-      fontFamily: 'Inter, system-ui, sans-serif',
+      fontFamily: 'Inter',
       fontWeight: 700,
       fontColor: '#1a1a1a',
       uppercase: true,
@@ -143,4 +167,4 @@ export const PRESETS: PresetConfig[] = [
       feedbackLabel: 'REPEAT',
     },
   },
-];
+]
