@@ -2,6 +2,9 @@
 
 # Diagram Creator
 
+![Demo](demo.gif)
+
+
 **A configurable flow diagram builder with real-time preview, shareable links, and multi-format export.**
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
